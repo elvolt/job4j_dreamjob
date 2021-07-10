@@ -1,13 +1,13 @@
-package ru.job4j.models;
+package ru.job4j.dream.model;
 
 import java.util.Objects;
 
-public class Candidate {
+public class Hr {
     private int id;
     private String name;
     private String surname;
 
-    public Candidate(int id, String name, String surname) {
+    public Hr(int id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -45,10 +45,10 @@ public class Candidate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Candidate candidate = (Candidate) o;
-        return id == candidate.id
-                && Objects.equals(name, candidate.name)
-                && Objects.equals(surname, candidate.surname);
+        Hr hr = (Hr) o;
+        return id == hr.id
+                && Objects.equals(name, hr.name)
+                && Objects.equals(surname, hr.surname);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return "Candidate{"
+        return "Hr{"
                 + "id=" + id
                 + ", name='" + name + '\''
                 + ", surname='" + surname + '\''
