@@ -35,17 +35,32 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Названия</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фото</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${candidates}" var="candidate">
                         <tr>
                             <td>
-                                <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
-                                    <i class="fa fa-edit mr-3"></i>
-                                </a>
                                 <c:out value="${candidate.name}"/>
+                                <br>
+                                <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
+                                    <i class="fa fa-edit mx-1"></i>
+                                </a>
+                                <a href='<c:url value="/deleteCandidate?id=${candidate.id}&name=${candidate.name}"/>'>
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <img src="<c:url value='/download?id=${candidate.id}'/>"
+                                     alt="Candidate photo" onerror='this.onerror=null;
+                                     this.src="https://via.placeholder.com/150.png?text=Photo+Not+Found";' height="150px"/>
+                                <br>
+                                <a href="<%=request.getContextPath()%>/upload?id=<c:out value="${candidate.id}"/>&name=<c:out value="${candidate.name}"/>">
+                                    Загрузить фото
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>
