@@ -18,6 +18,7 @@ public class DeleteCandidateServlet extends HttpServlet {
         String name = req.getParameter("name");
         req.setAttribute("id", id);
         req.setAttribute("name", name);
+        req.setAttribute("user", req.getSession().getAttribute("user"));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/deleteCandidate.jsp");
         dispatcher.forward(req, resp);
     }
