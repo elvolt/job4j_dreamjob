@@ -2,6 +2,7 @@ package ru.job4j.dream.store;
 
 import ru.job4j.dream.model.Candidate;
 import ru.job4j.dream.model.Post;
+import ru.job4j.dream.model.User;
 
 import java.time.LocalDate;
 
@@ -47,6 +48,29 @@ public class PsqlMain {
         store.deleteCandidate(candidate3.getId());
         for (Candidate candidate : store.findAllCandidates()) {
             System.out.println(candidate);
+        }
+        System.out.println("--------------USERS--------------");
+        User user1 = new User(0, "Pavel Pavlov", "pavel@mail.ru", "asd");
+        User user2 = new User(0, "Ivan Ivanov", "ivan@mail.ru", "qwe");
+        User user3 = new User(0, "Roman Romanov", "roman@mail.ru", "zxc");
+        store.save(user1);
+        store.save(user2);
+        store.save(user3);
+        System.out.println("-----Find All Users-----");
+        for (User user : store.findAllUsers()) {
+            System.out.println(user);
+        }
+        System.out.println("----Find User By Id----");
+        System.out.println(store.findUserById(user2.getId()));
+        System.out.println("----Update User------");
+        user1.setEmail("pavel2@mail.ru");
+        System.out.println(user1);
+        store.save(user1);
+        System.out.println(store.findUserById(user1.getId()));
+        System.out.println("-----Remove User-----");
+        store.deleteUser(user3.getId());
+        for (User user : store.findAllUsers()) {
+            System.out.println(user);
         }
     }
 }
