@@ -1,6 +1,6 @@
-<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -23,8 +23,7 @@
     <title>Работа мечты</title>
 </head>
 <body>
-
-<div class="container">
+<div class="container pt-3">
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
@@ -53,20 +52,32 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Загрузка фото
+                Регистрация
             </div>
             <div class="card-body">
-                <h5>Выберите фото для  <c:out value="${name}"/></h5>
-                <form action="<c:url value='/upload?id=${id}'/>" method="post" enctype="multipart/form-data">
+                <form action="<%=request.getContextPath()%>/reg.do" method="post">
                     <div class="form-group">
-                        <input type="file" name="file"/>
+                        <label>Имя</label>
+                        <input type="text" class="form-control" name="name">
                     </div>
-                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                    <div class="form-group">
+                        <label>Почта</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+                    <c:if test="${not empty error}">
+                        <div style="color:#ff0000; font-weight: bold; margin: 30px 0;">
+                                ${error}
+                        </div>
+                    </c:if>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

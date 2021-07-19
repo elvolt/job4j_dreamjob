@@ -54,7 +54,7 @@
                         Выйти</a>
                 </c:if>
                 <c:if test="${user == null}">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти | Зарегистрироваться</a>
                 </c:if>
             </li>
         </ul>
