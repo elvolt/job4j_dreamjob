@@ -72,5 +72,7 @@ public class PsqlMain {
         for (User user : store.findAllUsers()) {
             System.out.println(user);
         }
+        System.out.println("------Find User By Email------");
+        System.out.println(store.findUserByEmail("pavel2@mail.ru"));
     }
 }

@@ -92,6 +92,16 @@ public class MemStore implements Store {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        for (Map.Entry<Integer, User> entry : users.entrySet()) {
+            if (entry.getValue().getEmail().equals(email)) {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void deleteCandidate(int id) {
          candidates.remove(id);
     }
