@@ -17,7 +17,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
+    <script>
+        function validate() {
+            const name = $('#name');
+            const surname = $('#surname');
+            const gender = $('#gender');
+            const description = $('#description');
+            if (name.val() === '') {
+                alert('Введите имя');
+            }
+            if (surname.val() === '') {
+                alert('Введите фамилию');
+            }
+            if (gender.val() === '') {
+                alert('Введите пол');
+            }
+            if (description.val() === '') {
+                alert('Введите описание');
+            }
+        }
+    </script>
     <title>Bootstrap Example</title>
 </head>
 <body>
@@ -37,6 +56,7 @@
                 <div class="form-group">
                     <label for="gender">Пол</label>
                     <select name="gender" id="gender" class="form-control">
+                        <option></option>
                         <option>М</option>
                         <option>Ж</option>
                     </select>
@@ -45,7 +65,7 @@
                     <label for="description">Описание</label>
                     <textarea name="description" id="description" class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Отправить</button>
+                <button type="submit" class="btn btn-primary" onclick="return validate();">Отправить</button>
             </form>
         </div>
         <div class="col-md m-3">
