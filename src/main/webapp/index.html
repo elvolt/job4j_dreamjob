@@ -17,26 +17,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-    <script>
-        function validate() {
-            const name = $('#name');
-            const surname = $('#surname');
-            const gender = $('#gender');
-            const description = $('#description');
-            if (name.val() === '') {
-                alert('Введите имя');
-            }
-            if (surname.val() === '') {
-                alert('Введите фамилию');
-            }
-            if (gender.val() === '') {
-                alert('Введите пол');
-            }
-            if (description.val() === '') {
-                alert('Введите описание');
-            }
-        }
-    </script>
     <title>Bootstrap Example</title>
 </head>
 <body>
@@ -65,11 +45,11 @@
                     <label for="description">Описание</label>
                     <textarea name="description" id="description" class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="return validate();">Отправить</button>
+                <button type="submit" class="btn btn-primary">Добавить</button>
             </form>
         </div>
         <div class="col-md m-3">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="table">
                 <thead>
                 <tr>
                     <th>Имя</th>
@@ -84,6 +64,50 @@
         </div>
     </div>
 </div>
+<script>
+    const name = $('#name');
+    const surname = $('#surname');
+    const gender = $('#gender');
+    const description = $('#description');
 
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (validate()) {
+            addRow();
+            form.reset();
+        }
+    });
+
+    function validate() {
+        if (name.val() === '') {
+            alert('Введите имя');
+            return false;
+        }
+        if (surname.val() === '') {
+            alert('Введите фамилию');
+            return false;
+        }
+        if (gender.val() === '') {
+            alert('Введите пол');
+            return false;
+        }
+        if (description.val() === '') {
+            alert('Введите описание');
+            return false;
+        }
+        return true;
+    }
+
+    function addRow() {
+        $('#table tr:last').after('<tr><' +
+            '<td>' + name.val() + '</td>' +
+            '<td>' + surname.val() + '</td>' +
+            '<td>' + gender.val() + '</td>' +
+            '<td>' + description.val() + '</td>' +
+            '</tr>');
+    }
+</script>
 </body>
 </html>
