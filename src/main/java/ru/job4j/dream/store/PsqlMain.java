@@ -27,9 +27,9 @@ public class PsqlMain {
         store.save(post1);
         System.out.println(store.findPostById(post1.getId()));
         System.out.println("*********************");
-        Candidate candidate1 = new Candidate(0, "Ivan Ivanov");
-        Candidate candidate2 = new Candidate(0, "Petr Petrov");
-        Candidate candidate3 = new Candidate(0, "Pavel Pavlov");
+        Candidate candidate1 = new Candidate(0, "Ivan Ivanov", 1);
+        Candidate candidate2 = new Candidate(0, "Petr Petrov", 2);
+        Candidate candidate3 = new Candidate(0, "Pavel Pavlov", 3);
         store.save(candidate1);
         store.save(candidate2);
         store.save(candidate3);

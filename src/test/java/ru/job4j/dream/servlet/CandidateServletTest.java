@@ -31,6 +31,7 @@ public class CandidateServletTest {
         HttpServletResponse resp = mock(HttpServletResponse.class);
         PowerMockito.when(req.getParameter("id")).thenReturn("0");
         PowerMockito.when(req.getParameter("name")).thenReturn("n");
+        PowerMockito.when(req.getParameter("city")).thenReturn("1");
         new CandidateServlet().doPost(req, resp);
         List<Candidate> candidates = new ArrayList<>(store.findAllCandidates());
         Candidate result = candidates.get(candidates.size() - 1);

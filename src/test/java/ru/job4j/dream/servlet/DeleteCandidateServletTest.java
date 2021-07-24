@@ -29,7 +29,7 @@ public class DeleteCandidateServletTest {
         PowerMockito.when(PsqlStore.instOf()).thenReturn(store);
         HttpServletRequest req = mock(HttpServletRequest.class);
         HttpServletResponse resp = mock(HttpServletResponse.class);
-        store.save(new Candidate(0, "User"));
+        store.save(new Candidate(0, "User", 1));
         List<Candidate> candidates = new ArrayList<>(store.findAllCandidates());
         Candidate lastCandidate = candidates.get(candidates.size() - 1);
         PowerMockito.when(req.getParameter("id"))

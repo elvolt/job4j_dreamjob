@@ -19,7 +19,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Работа мечты</title>
 </head>
 <body>
@@ -58,15 +58,15 @@
                 <form action="<%=request.getContextPath()%>/reg.do" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" id="name">
                     </div>
                     <div class="form-group">
                         <label>Почта</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Зарегистрировать</button>
                     <c:if test="${not empty error}">
@@ -79,5 +79,34 @@
         </div>
     </div>
 </div>
+<script>
+    const name = $('#name');
+    const email = $('#email');
+    const password = $('#password');
+
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        if (!validate()) {
+            e.preventDefault();
+        }
+    });
+
+    function validate() {
+        if (name.val() === '') {
+            alert('Введите имя');
+            return false;
+        }
+        if (email.val() === '') {
+            alert('Введите почту');
+            return false;
+        }
+        if (password.val() === '') {
+            alert('Введите пароль');
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

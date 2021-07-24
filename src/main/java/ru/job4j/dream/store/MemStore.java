@@ -1,6 +1,7 @@
 package ru.job4j.dream.store;
 
 import ru.job4j.dream.model.Candidate;
+import ru.job4j.dream.model.City;
 import ru.job4j.dream.model.Post;
 import ru.job4j.dream.model.User;
 
@@ -16,10 +17,12 @@ public class MemStore implements Store {
     private static final AtomicInteger POST_ID = new AtomicInteger(4);
     private static final AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
     private static final AtomicInteger USER_ID = new AtomicInteger(4);
+    private static final AtomicInteger CITY_ID = new AtomicInteger(4);
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
     private final Map<Integer, User> users = new ConcurrentHashMap<>();
+    private final Map<Integer, City> cities = new ConcurrentHashMap<>();
 
     private MemStore() {
         posts.put(1, new Post(1, "Junior Java Job", "Требуется Junior Java Developer",
@@ -28,9 +31,12 @@ public class MemStore implements Store {
                 LocalDate.of(2021, 7, 10)));
         posts.put(3, new Post(3, "Senior Java Job", "Требуется Senior Java Developer",
                 LocalDate.of(2021, 7, 10)));
-        candidates.put(1, new Candidate(1, "Junior Java"));
-        candidates.put(2, new Candidate(2, "Middle Java"));
-        candidates.put(3, new Candidate(3, "Senior Java"));
+        cities.put(1, new City(1, "Москва"));
+        cities.put(2, new City(2, "Санкт_петербург"));
+        cities.put(3, new City(3, "Воронеж"));
+        candidates.put(1, new Candidate(1, "Junior Java", 1));
+        candidates.put(2, new Candidate(2, "Middle Java", 2));
+        candidates.put(3, new Candidate(3, "Senior Java", 3));
     }
 
     public static MemStore instOf() {
@@ -109,5 +115,10 @@ public class MemStore implements Store {
     @Override
     public void deleteUser(int id) {
         users.remove(id);
+    }
+
+    @Override
+    public Collection<City> findAllCities() {
+        return cities.values();
     }
 }

@@ -19,7 +19,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Работа мечты</title>
 </head>
 <body>
@@ -59,7 +59,7 @@
                 <h5>Выберите фото для  <c:out value="${name}"/></h5>
                 <form action="<c:url value='/upload?id=${id}'/>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <input type="file" name="file"/>
+                        <input type="file" name="file" id="file"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Загрузить</button>
                 </form>
@@ -67,6 +67,24 @@
         </div>
     </div>
 </div>
+<script>
+    const file = $('#file');
 
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        if (!validate()) {
+            e.preventDefault();
+        }
+    });
+
+    function validate() {
+        if (file.val() === '') {
+            alert('Выберите файл');
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>
